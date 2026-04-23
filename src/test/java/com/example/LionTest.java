@@ -30,12 +30,12 @@ public class LionTest {
 
     @Test
     public void lionGetsFood() throws Exception {
-        Mockito.when(predatorMock.getFood("Хищник")).thenReturn(Arrays.asList("Мясо"));
+        Mockito.when(predatorMock.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
 
         Lion lion = new Lion("Самец", predatorMock);
         List<String> food = lion.getFood();
 
-        Assert.assertEquals(Arrays.asList("Мясо"), food);
+        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
 
         Mockito.verify(predatorMock).getFood("Хищник");
     }
