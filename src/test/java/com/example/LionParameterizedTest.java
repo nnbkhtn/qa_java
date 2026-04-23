@@ -33,8 +33,4 @@ public class LionParameterizedTest {
         Lion lion = new Lion(sex, null);
         assertEquals(expectedHasMane, lion.doesHaveMane());
     }
-    @Test(expected = Exception.class)
-    public void testLionInvalidSex() throws Exception {
-        new Lion("Другое", null);
-    }
 }

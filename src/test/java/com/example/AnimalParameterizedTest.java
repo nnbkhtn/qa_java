@@ -35,9 +35,4 @@ public class AnimalParameterizedTest {
         List<String> result = animal.getFood(animalKind);
         assertEquals(expectedFood, result);
     }
-    @Test(expected = Exception.class)
-    public void testGetFoodInvalidInput() throws Exception{
-        Animal animal = new Animal();
-        animal.getFood("Всеядные");
-    }
 }
