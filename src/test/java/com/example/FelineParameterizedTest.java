@@ -20,7 +20,7 @@ public class FelineParameterizedTest {
         this.expectedCount = expectedCount;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Количество котят: {0}")
     public static Collection<Object[]> getData() {
         return Arrays.asList(new Object[][]{
                 {0, 0},

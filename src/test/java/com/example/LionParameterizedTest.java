@@ -22,7 +22,7 @@ public class LionParameterizedTest {
         this.expectedExceptionMessage = expectedExceptionMessage;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Пол льва: {0}")
     public static Collection<Object[]> getData() {
         return Arrays.asList(new Object[][]{
                 {"Самец", true, null},

@@ -24,7 +24,7 @@ public class AnimalParameterizedTest {
         this.expectedExceptionMessage = expectedExceptionMessage;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Animal: {0}")
     public static Collection<Object[]> getData() {
         return Arrays.asList(new Object[][]{
                 {"Травоядное", List.of("Трава", "Различные растения"), null},
