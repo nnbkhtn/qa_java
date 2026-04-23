@@ -30,12 +30,19 @@ public class CatTest {
     }
 
     @Test
-    public void catGetFood() throws Exception {
-        Mockito.when(felineMock.eatMeat()).thenReturn(Arrays.asList("Животные", "Птицы", "Рыба"));
+    public void catGetFoodReturnsCorrectData() throws Exception {
+        Mockito.when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
 
         List<String> food = cat.getFood();
 
-        assertEquals(Arrays.asList("Животные", "Птицы", "Рыба"), food);
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
+    }
+
+    @Test
+    public void catGetFoodCallsEatMeat() throws Exception {
+        Mockito.when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+
+        cat.getFood();
 
         Mockito.verify(felineMock).eatMeat();
     }
