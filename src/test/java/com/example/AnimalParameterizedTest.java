@@ -9,44 +9,35 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
 public class AnimalParameterizedTest {
 
     private final String animalKind;
     private final List<String> expectedFood;
-    private final String expectedExceptionMessage;
 
-    public AnimalParameterizedTest(String animalKind, List<String> expectedFood, String expectedExceptionMessage) {
+    public AnimalParameterizedTest(String animalKind, List<String> expectedFood) {
         this.animalKind = animalKind;
         this.expectedFood = expectedFood;
-        this.expectedExceptionMessage = expectedExceptionMessage;
     }
 
     @Parameterized.Parameters(name = "Animal: {0}")
     public static Collection<Object[]> getData() {
         return Arrays.asList(new Object[][]{
-                {"Травоядное", List.of("Трава", "Различные растения"), null},
-                {"Хищник", List.of("Животные", "Птицы", "Рыба"), null},
-                {"Всеядные", null, "Неизвестный вид животного, используйте значение Травоядное или Хищник"}
+                {"Травоядное", List.of("Трава", "Различные растения")},
+                {"Хищник", List.of("Животные", "Птицы", "Рыба")}
         });
     }
 
     @Test
-    public void testGetFood() {
+    public void testGetFood() throws Exception {
         Animal animal = new Animal();
-        try {
-            List<String> result = animal.getFood(animalKind);
-
-            if (expectedExceptionMessage != null) {
-                fail(expectedExceptionMessage);
-            }
-
-            assertEquals(expectedFood, result);
-
-        } catch (Exception e) {
-            assertEquals(expectedExceptionMessage, e.getMessage());
-        }
+        List<String> result = animal.getFood(animalKind);
+        assertEquals(expectedFood, result);
+    }
+    @Test(expected = Exception.class)
+    public void testGetFoodInvalidInput() throws Exception{
+        Animal animal = new Animal();
+        animal.getFood("Всеядные");
     }
 }

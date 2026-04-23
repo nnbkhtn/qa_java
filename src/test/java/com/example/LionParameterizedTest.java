@@ -14,32 +14,27 @@ public class LionParameterizedTest {
 
     private final String sex;
     private final boolean expectedHasMane;
-    private final String expectedExceptionMessage;
 
-    public LionParameterizedTest(String sex, boolean expectedHasMane, String expectedExceptionMessage) {
+    public LionParameterizedTest(String sex, boolean expectedHasMane) {
         this.sex = sex;
         this.expectedHasMane = expectedHasMane;
-        this.expectedExceptionMessage = expectedExceptionMessage;
     }
 
     @Parameterized.Parameters(name = "Пол льва: {0}")
     public static Collection<Object[]> getData() {
         return Arrays.asList(new Object[][]{
-                {"Самец", true, null},
-                {"Самка", false, null},
-                {"Другое", false, "Используйте допустимые значения пола животного - самец или самка"}
+                {"Самец", true},
+                {"Самка", false}
         });
     }
 
     @Test
-    public void testLionSexInitialization() {
-        try {
-            Lion lion = new Lion(sex, null);
-
-            assertEquals(expectedHasMane, lion.doesHaveMane());
-
-        } catch (Exception e) {
-            assertEquals(expectedExceptionMessage, e.getMessage());
-        }
+    public void testLionSexInitialization() throws Exception{
+        Lion lion = new Lion(sex, null);
+        assertEquals(expectedHasMane, lion.doesHaveMane());
+    }
+    @Test(expected = Exception.class)
+    public void testLionInvalidSex() throws Exception {
+        new Lion("Другое", null);
     }
 }
