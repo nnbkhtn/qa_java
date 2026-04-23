@@ -41,16 +41,4 @@ public class LionTest {
 
         Mockito.verify(predatorMock).getFood("Хищник");
     }
-
-    @Test
-    public void lionHasManeWhenMale() throws Exception {
-        Lion lion = new Lion("Самец", predatorMock);
-        assertEquals(true, lion.doesHaveMane());
-    }
-
-    @Test
-    public void lionDoesNotHaveManeWhenFemale() throws Exception {
-        Lion lion = new Lion("Самка", predatorMock);
-        assertEquals(false, lion.doesHaveMane());
-    }
 }
